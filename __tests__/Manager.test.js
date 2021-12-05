@@ -10,7 +10,13 @@ test('creates an manager object', () => {
 });
 
 test('creates an manager object and verifies getRole', () => {
-    const manager = new Manager('Mark', 101, 'mark@fakeEmail.com');
+    const manager = new Manager('Mark', 101, 'mark@fakeEmail.com', 5002);
+
+    expect(manager.getofficeNo()).toBe(5002);
+});
+
+test('creates an manager object and verifies getRole', () => {
+    const manager = new Manager('Mark', 101, 'mark@fakeEmail.com', 5002);
 
     expect(manager.getRole()).toBe('Manager');
 });
