@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
 
 var employeeArray = [];
 
@@ -11,22 +12,22 @@ const promptQuestionsManager = () =>
         {
             type: 'input',
             name: 'name',
-            message: 'What is the managers name?',
+            message: 'What is the manager\'s name?',
         },
         {
             type: 'input',
             name: 'empId',
-            message: 'What is the managers employee ID?',
+            message: 'What is the manager\'s employee ID?',
         },
         {
             type: 'input',
             name: 'emailAdd',
-            message: 'What is the managers email address?',
+            message: 'What is the manager\'s email address?',
         },
         {
             type: 'input',
             name: 'officeNo',
-            message: 'What is the managers office number?',
+            message: 'What is the manager\'s office number?',
         },
     ])
     .then((managerInput) => 
@@ -46,22 +47,22 @@ const promptQuestionsEngineer = () =>
         {
             type: 'input',
             name: 'name',
-            message: 'What is the engineers name?',
+            message: 'What is the engineer\'s name?',
         },
         {
             type: 'input',
             name: 'empId',
-            message: 'What is the engineers employee ID?',
+            message: 'What is the engineer\'s employee ID?',
         },
         {
             type: 'input',
             name: 'emailAdd',
-            message: 'What is the engineers email address?',
+            message: 'What is the engineer\'s email address?',
         },
         {
             type: 'input',
             name: 'gitUser',
-            message: 'What is the engineers GitHub username?',
+            message: 'What is the engineer\'s GitHub username?',
         },
     ])
     .then((engineerInput) => 
@@ -69,6 +70,41 @@ const promptQuestionsEngineer = () =>
         const engineer = new Engineer(engineerInput.name, engineerInput.empId, engineerInput.emailAdd, engineerInput.gitUser)
         employeeArray.push(engineer);
     //    console.log(employeeArray)
+//        console.log(managerInput.name);
+//        console.log(manager);
+    })
+};
+
+const promptQuestionsIntern = () => 
+{
+    return inquirer.prompt
+    ([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'What is the intern\'s name?'
+        },
+        {
+            type: 'input',
+            name: 'empId',
+            message: 'What is the intern\'s employee ID?',
+        },
+        {
+            type: 'input',
+            name: 'emailAdd',
+            message: 'What is the intern\'s email address?',
+        },
+        {
+            type: 'input',
+            name: 'school',
+            message: 'What school does the intern attend?',
+        },
+    ])
+    .then((internInput) => 
+    {
+        const intern = new Intern(internInput.name, internInput.empId, internInput.emailAdd, internInput.school)
+        employeeArray.push(intern);
+        console.log(employeeArray)
 //        console.log(managerInput.name);
 //        console.log(manager);
     })
@@ -92,6 +128,9 @@ const askQuestion = () =>
         if(typeAnswer.empType === "Engineer")
         {
             promptQuestionsEngineer();
+        } else 
+        {
+            promptQuestionsIntern();
         }
         //call prompt for engineer if selected. if answer is engineer then call promptQuestionsEngineer
 
