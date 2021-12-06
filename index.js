@@ -34,9 +34,6 @@ const promptQuestionsManager = () =>
     {
         const manager = new Manager(managerInput.name, managerInput.empId, managerInput.emailAdd, managerInput.officeNo)
         employeeArray.push(manager);
-        // console.log(employeeArray)
-        // console.log(managerInput.name);
-        // console.log(manager);
     })
 };
 
@@ -69,9 +66,6 @@ const promptQuestionsEngineer = () =>
     {
         const engineer = new Engineer(engineerInput.name, engineerInput.empId, engineerInput.emailAdd, engineerInput.gitUser)
         employeeArray.push(engineer);
-    //    console.log(employeeArray)
-//        console.log(managerInput.name);
-//        console.log(manager);
     })
 };
 
@@ -104,9 +98,6 @@ const promptQuestionsIntern = () =>
     {
         const intern = new Intern(internInput.name, internInput.empId, internInput.emailAdd, internInput.school)
         employeeArray.push(intern);
-        console.log(employeeArray)
-//        console.log(managerInput.name);
-//        console.log(manager);
     })
 };
 
@@ -123,7 +114,6 @@ const askQuestion = () =>
     ])
     .then((typeAnswer) =>
     {
-        //const answer = new answer(typeAnswer.empType)
         console.log(typeAnswer)
         if(typeAnswer.empType === "Engineer")
         {
@@ -132,9 +122,6 @@ const askQuestion = () =>
         {
             promptQuestionsIntern();
         }
-        //call prompt for engineer if selected. if answer is engineer then call promptQuestionsEngineer
-
-        //or call prompt for intern
     })
 };
 
