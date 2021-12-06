@@ -28,7 +28,7 @@ const promptQuestionsManager = () =>
             type: 'input',
             name: 'officeNo',
             message: 'What is the manager\'s office number?',
-        },
+        }
     ])
     .then((managerInput) => 
     {
@@ -61,11 +61,20 @@ const promptQuestionsEngineer = () =>
             name: 'gitUser',
             message: 'What is the engineer\'s GitHub username?',
         },
+        {
+            type: 'confirm',
+            name: 'addAnother',
+            message: 'Would you like to add another Engineer or Intern?',
+        }
     ])
     .then((engineerInput) => 
     {
         const engineer = new Engineer(engineerInput.name, engineerInput.empId, engineerInput.emailAdd, engineerInput.gitUser)
         employeeArray.push(engineer);
+        if(engineerInput.addAnother) 
+        {
+            askQuestion();
+        }
     })
 };
 
@@ -93,11 +102,20 @@ const promptQuestionsIntern = () =>
             name: 'school',
             message: 'What school does the intern attend?',
         },
+        {
+            type: 'confirm',
+            name: 'addAnother',
+            message: 'Would you like to add another Engineer or Intern?',
+        }
     ])
     .then((internInput) => 
     {
         const intern = new Intern(internInput.name, internInput.empId, internInput.emailAdd, internInput.school)
         employeeArray.push(intern);
+        if(internInput.addAnother) 
+        {
+            askQuestion();
+        }
     })
 };
 
