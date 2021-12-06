@@ -281,7 +281,8 @@
     "jest": "^27.4.3"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
