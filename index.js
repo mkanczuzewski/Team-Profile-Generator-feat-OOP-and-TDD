@@ -114,7 +114,7 @@ const promptQuestionsIntern = () =>
         employeeArray.push(intern);
         if(internInput.addAnother) 
         {
-            askQuestion();
+            askQuestion(); 
         }
     })
 };
@@ -144,6 +144,6 @@ const askQuestion = () =>
 };
 
 promptQuestionsManager()
-    .then(askQuestion);
-
+    .then(askQuestion)
+    .then(console.log(employeeArray));
 module.exports = promptQuestionsManager;
