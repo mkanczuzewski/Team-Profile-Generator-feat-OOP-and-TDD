@@ -1,7 +1,9 @@
+const fs = require('fs');
 const inquirer = require('inquirer');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
+const generatePage = require('./src/page-template');
 
 var employeeArray = [];
 
@@ -144,6 +146,16 @@ const askQuestion = () =>
 };
 
 promptQuestionsManager()
-    .then(askQuestion)
-    .then(console.log(employeeArray));
-module.exports = promptQuestionsManager;
+    // .then(askQuestion)
+    .then(x => {console.log(employeeArray)})
+    .then(employeeArray => {
+        const pageHTML = generatePage(employeeArray);
+    
+        fs.writeFile('./dist/index.html', pageHTML, err => {
+          if (err) throw new Error(err);
+    
+          console.log('Page created! Check out index.html in this directory to see it!');
+        });
+      });
+
+// module.exports = promptQuestionsManager;
