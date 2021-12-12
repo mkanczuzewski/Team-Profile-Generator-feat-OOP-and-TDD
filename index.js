@@ -102,7 +102,11 @@ const promptQuestionsEmployee = employeeData =>
         
         if(employeeInput.addAnother === true) 
         {
-            promptQuestionsEmployee();
+            return promptQuestionsEmployee(employeeArray);
+        }
+        else
+        {
+            return employeeArray;
         }
     })
 };

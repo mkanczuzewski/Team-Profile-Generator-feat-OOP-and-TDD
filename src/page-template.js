@@ -1,35 +1,88 @@
-// create the Info Cards section
-const generateInfoCard = employee => {
+// create the manager card
+const generateManagerCard = function(manager) {
     return `
         <section>
             <div class="flex-row justify-space-between">
-            ${infoArr
-                .map(({ name, empId, emailAdd, officeNo }) => {
-                return `
-                    <div class="class= card bg-dark text-white">
-                        <h3 class="text-white">${name}</h3>
-                        <h3 class="text-white">${name}</h3>
-                        <h5 class="text-white">
-                            Employee ID: ${empId}
-                        </h5>
-                        <h5 class="text-white">
-                            Employee Email Address: ${emailAdd}
-                        </h5>
-                        <h5 class="text-white">
-                            Manager Office No: ${officeNo}
-                        </h5>
-                    </div>
-                `;
-                })
-            .join('')
-            }
+                <div class="class= card bg-dark text-white">
+                    <h3 class="text-white">${manager.name}</h3>
+                    <h3 class="text-white">Manager</h3>
+                    <h5 class="text-white">
+                        Employee ID: ${manager.empId}
+                    </h5>
+                    <h5 class="text-white">
+                        Employee Email Address: ${manager.emailAdd}
+                    </h5>
+                    <h5 class="text-white">
+                        Manager Office No: ${manager.officeNo}
+                    </h5>
+                </div>
+            </div>
+        </section>
+      `;
+};
+
+// create the engineer card
+const generateEngineerCard = function(engineer) {
+    return `
+        <section>
+            <div class="flex-row justify-space-between">
+                <div class="class= card bg-dark text-white">
+                    <h3 class="text-white">${engineer.name}</h3>
+                    <h3 class="text-white">Engineer</h3>
+                    <h5 class="text-white">
+                        Employee ID: ${engineer.empId}
+                    </h5>
+                    <h5 class="text-white">
+                        Employee Email Address: ${engineer.emailAdd}
+                    </h5>
+                    <h5 class="text-white">
+                        GitHub username: ${engineer.gitUser}
+                    </h5>
+                </div>
+            </div>
+        </section>
+      `;
+};
+
+// create the Intern card
+const generateInternCard = function(intern) {
+    return `
+        <section>
+            <div class="flex-row justify-space-between">
+                <div class="class= card bg-dark text-white">
+                    <h3 class="text-white">${intern.name}</h3>
+                    <h3 class="text-white">Intern</h3>
+                    <h5 class="text-white">
+                        Employee ID: ${intern.empId}
+                    </h5>
+                    <h5 class="text-white">
+                        Employee Email Address: ${intern.emailAdd}
+                    </h5>
+                    <h5 class="text-white">
+                        School Name: ${intern.school}
+                    </h5>
+                </div>
             </div>
         </section>
       `;
 };
 
 generatePage = (employeeData) =>{
-
+    for (let i = 0; i < employeeData.length; i++) {
+        //swtich statement looks at the text value of getRole, hence quotes on the case statement
+        switch(employeeData[i].getRole())
+        {
+            case 'Manager':
+                generateManagerCard(employeeData[i])
+            break;
+            case 'Engineer':
+                generateEngineerCard(employeeData[i])
+            break;
+            case 'Intern':
+                generateInternCard(employeeData[i])
+            break;
+        }
+    } 
 }
 
 // // export function to generate entire page
