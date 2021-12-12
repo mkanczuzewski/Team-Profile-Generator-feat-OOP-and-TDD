@@ -1,69 +1,75 @@
 // create the manager card
 const generateManagerCard = function(manager) {
     return `
-        <section>
-            <div class="flex-row justify-space-between">
-                <div class="class= card bg-dark text-white">
-                    <h3 class="text-white">${manager.name}</h3>
-                    <h3 class="text-white">Manager</h3>
-                    <h5 class="text-white">
-                        Employee ID: ${manager.empId}
-                    </h5>
-                    <h5 class="text-white">
-                        Employee Email Address: ${manager.emailAdd}
-                    </h5>
-                    <h5 class="text-white">
-                        Manager Office No: ${manager.officeNo}
-                    </h5>
+        <div class="column">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body bg-dark text-white">
+                    <h3 class="card-title text-white">${manager.name}</h3>
+                    <h3 class="card-text text-white">Manager</h3>
+                    <div class="bg-light text-dark">
+                        <div class="card-text">
+                            Employee ID: ${manager.id}
+                        </div>
+                        <div class="card-text">
+                            Employee Email Address: ${manager.emailAddress}
+                        </div>
+                        <div class="card-text">
+                            Manager Office No: ${manager.officeNo}
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
       `;
 };
 
 // create the engineer card
 const generateEngineerCard = function(engineer) {
     return `
-        <section>
-            <div class="flex-row justify-space-between">
-                <div class="class= card bg-dark text-white">
-                    <h3 class="text-white">${engineer.name}</h3>
-                    <h3 class="text-white">Engineer</h3>
-                    <h5 class="text-white">
-                        Employee ID: ${engineer.empId}
-                    </h5>
-                    <h5 class="text-white">
-                        Employee Email Address: ${engineer.emailAdd}
-                    </h5>
-                    <h5 class="text-white">
-                        GitHub username: ${engineer.gitUser}
-                    </h5>
+        <div class="column">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body bg-dark text-white">
+                    <h3 class="card-title text-white">${engineer.name}</h3>
+                    <h3 class="card-text text-white">Manager</h3>
+                    <div class="bg-light text-dark">
+                        <div class="card-text">
+                            Employee ID: ${engineer.id}
+                        </div>
+                        <div class="card-text">
+                            Employee Email Address: ${engineer.emailAddress}
+                        </div>
+                        <div class="card-text">
+                            GitHub Username: ${engineer.gitHubUser}
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
       `;
 };
 
 // create the Intern card
 const generateInternCard = function(intern) {
     return `
-        <section>
-            <div class="flex-row justify-space-between">
-                <div class="class= card bg-dark text-white">
-                    <h3 class="text-white">${intern.name}</h3>
-                    <h3 class="text-white">Intern</h3>
-                    <h5 class="text-white">
-                        Employee ID: ${intern.empId}
-                    </h5>
-                    <h5 class="text-white">
-                        Employee Email Address: ${intern.emailAdd}
-                    </h5>
-                    <h5 class="text-white">
-                        School Name: ${intern.school}
-                    </h5>
+        <div class="column">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body bg-dark text-white">
+                    <h3 class="card-title text-white">${intern.name}</h3>
+                    <h3 class="card-text text-white">Manager</h3>
+                    <div class="bg-light text-dark">
+                        <div class="card-text bg-light text-black">
+                            Employee ID: ${intern.id}
+                        </div>
+                        <div class="card-text bg-light text-black">
+                            Employee Email Address: ${intern.emailAddress}
+                        </div>
+                        <div class="card-text bg-light text-black">
+                            Intern School: ${intern.school}
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
       `;
 };
 
@@ -107,7 +113,9 @@ module.exports = (employeeData) => {
         </div>
         </header>
         <main class="container my-5">
+            <div class="row justify-content-around">
             ${cardValues}
+            </div>
         </main>
         <footer class="container text-center py-3">
             <h3 class="text-dark">&copy;2021 by Mark</h3>
