@@ -39,90 +39,13 @@ const promptQuestionsManager = () =>
     })
 };
 
-const promptQuestionsEngineer = () => 
+const promptQuestionsEmployee = employeeData => 
 {
-    return inquirer.prompt
-    ([
-        {
-            type: 'input',
-            name: 'name',
-            message: 'What is the engineer\'s name?',
-        },
-        {
-            type: 'input',
-            name: 'empId',
-            message: 'What is the engineer\'s employee ID?',
-        },
-        {
-            type: 'input',
-            name: 'emailAdd',
-            message: 'What is the engineer\'s email address?',
-        },
-        {
-            type: 'input',
-            name: 'gitUser',
-            message: 'What is the engineer\'s GitHub username?',
-        },
-        {
-            type: 'confirm',
-            name: 'addAnother',
-            message: 'Would you like to add another Engineer or Intern?',
-        }
-    ])
-    .then((engineerInput) => 
-    {
-        const engineer = new Engineer(engineerInput.name, engineerInput.empId, engineerInput.emailAdd, engineerInput.gitUser)
-        employeeArray.push(engineer);
-        if(engineerInput.addAnother) 
-        {
-            askQuestion();
-        }
-    })
-};
-
-const promptQuestionsIntern = () => 
-{
-    return inquirer.prompt
-    ([
-        {
-            type: 'input',
-            name: 'name',
-            message: 'What is the intern\'s name?'
-        },
-        {
-            type: 'input',
-            name: 'empId',
-            message: 'What is the intern\'s employee ID?',
-        },
-        {
-            type: 'input',
-            name: 'emailAdd',
-            message: 'What is the intern\'s email address?',
-        },
-        {
-            type: 'input',
-            name: 'school',
-            message: 'What school does the intern attend?',
-        },
-        {
-            type: 'confirm',
-            name: 'addAnother',
-            message: 'Would you like to add another Engineer or Intern?',
-        }
-    ])
-    .then((internInput) => 
-    {
-        const intern = new Intern(internInput.name, internInput.empId, internInput.emailAdd, internInput.school)
-        employeeArray.push(intern);
-        if(internInput.addAnother) 
-        {
-            askQuestion(); 
-        }
-    })
-};
-
-const askQuestion = () =>
-{
+    console.log(`
+    =================
+    Add a New Employee
+    =================
+    `);
     return inquirer.prompt
     ([
         {
@@ -131,31 +54,72 @@ const askQuestion = () =>
             message: 'Do you want to add an engineer or an intern?',
             choices: ["Engineer", "Intern"]
         },
+        {
+            type: 'input',
+            name: 'name',
+            message: 'What is the employee\'s name?',
+        },
+        {
+            type: 'input',
+            name: 'empId',
+            message: 'What is the employee\'s employee ID?',
+        },
+        {
+            type: 'input',
+            name: 'emailAdd',
+            message: 'What is the employee\'s email address?',
+        },
+        {
+            type: 'input',
+            name: 'gitUser',
+            message: 'What is the employee\'s GitHub username?',
+            when: (answers) => answers.empType === 'Engineer',
+        },
+        {
+            type: 'input',
+            name: 'school',
+            message: 'What school does the intern attend?',
+            when: (answers) => answers.empType === 'Intern',
+        },
+        {
+            type: 'confirm',
+            name: 'addAnother',
+            message: 'Would you like to add another Engineer or Intern?',
+        }
     ])
-    .then((typeAnswer) =>
+    .then((employeeInput) => 
     {
-        console.log(typeAnswer)
-        if(typeAnswer.empType === "Engineer")
+        if (employeeInput.empType === 'Engineer')
         {
-            promptQuestionsEngineer();
-        } else 
+        const engineer = new Engineer(employeeInput.name, employeeInput.empId, employeeInput.emailAdd, employeeInput.gitUser)
+            employeeArray.push(engineer);
+        }
+        else if (employeeInput.empType === 'Intern')
         {
-            promptQuestionsIntern();
+        const intern = new Intern(employeeInput.name, employeeInput.empId, employeeInput.emailAdd, employeeInput.school)
+        employeeArray.push(intern);
+        }
+        
+        if(employeeInput.addAnother === true) 
+        {
+            promptQuestionsEmployee();
         }
     })
 };
 
 promptQuestionsManager()
+    .then (promptQuestionsEmployee)
+    .then (employeeArray => {const pageHTML = generatePage(employeeArray)});
     // .then(askQuestion)
-    .then(x => {console.log(employeeArray)})
-    .then(employeeArray => {
-        const pageHTML = generatePage(employeeArray);
+    // .then(x => {console.log(employeeArray)})
+    // .then(teamInfo => {
+    //     const pageHTML = generatePage(teamInfo);
     
-        fs.writeFile('./dist/index.html', pageHTML, err => {
-          if (err) throw new Error(err);
+    //     fs.writeFile('./dist/index.html', pageHTML, err => {
+    //       if (err) throw new Error(err);
     
-          console.log('Page created! Check out index.html in this directory to see it!');
-        });
-      });
+    //       console.log('Page created! Check out index.html in this directory to see it!');
+    //     });
+    //   });
 
 // module.exports = promptQuestionsManager;
