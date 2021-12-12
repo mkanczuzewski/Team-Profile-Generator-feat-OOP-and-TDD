@@ -113,17 +113,13 @@ const promptQuestionsEmployee = employeeData =>
 
 promptQuestionsManager()
     .then (promptQuestionsEmployee)
-    .then (employeeArray => {const pageHTML = generatePage(employeeArray)});
-    // .then(askQuestion)
-    // .then(x => {console.log(employeeArray)})
-    // .then(teamInfo => {
-    //     const pageHTML = generatePage(teamInfo);
-    
-    //     fs.writeFile('./dist/index.html', pageHTML, err => {
-    //       if (err) throw new Error(err);
-    
-    //       console.log('Page created! Check out index.html in this directory to see it!');
-    //     });
-    //   });
-
-// module.exports = promptQuestionsManager;
+    .then (employeeArray => 
+    {
+        const pageHTML = generatePage(employeeArray)
+            fs.writeFile('./dist/index.html', pageHTML, err => 
+        {
+            if (err) throw new Error(err);
+            
+            console.log('Page created! Check out index.html in this directory to see it!');
+        });
+    });

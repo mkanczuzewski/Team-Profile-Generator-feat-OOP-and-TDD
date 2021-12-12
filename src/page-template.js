@@ -67,56 +67,54 @@ const generateInternCard = function(intern) {
       `;
 };
 
-generatePage = (employeeData) =>{
+// export function to generate entire page
+module.exports = (employeeData) => {
+    let cardValues = ""
+    
     for (let i = 0; i < employeeData.length; i++) {
         //swtich statement looks at the text value of getRole, hence quotes on the case statement
         switch(employeeData[i].getRole())
         {
             case 'Manager':
-                generateManagerCard(employeeData[i])
+                cardValues += generateManagerCard(employeeData[i])
             break;
             case 'Engineer':
-                generateEngineerCard(employeeData[i])
+                cardValues += generateEngineerCard(employeeData[i])
             break;
             case 'Intern':
-                generateInternCard(employeeData[i])
+                cardValues += generateInternCard(employeeData[i])
             break;
         }
     } 
-}
-
-// // export function to generate entire page
-// module.exports = () => {
-//     // destructure page data by section
-//    const { teamArray } = templateData;
   
-//     return `
-//     <!DOCTYPE html>
-//     <html lang="en">
-//     <head>
-//         <meta charset="UTF-8">
-//         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-//         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-//         <title>Team Profile Generator</title>
-//         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-//         <link href="https://fonts.googleapis.com/css?family=Public+Sans:300i,300,500&display=swap" rel="stylesheet">
-//         <link rel="stylesheet" href="style.css">
-//     </head>
+    return `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Team Profile Generator</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+        <link href="https://fonts.googleapis.com/css?family=Public+Sans:300i,300,500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+    </head>
     
-//     <body>
-//         <header>
-//         <div class="container flex-row justify-space-between align-center py-3">
-//             <h1 class="page-title text-white bg-danger py-2 px-3 text-center">My Team</h1>
-//         </div>
-//         </header>
-//         <main class="container my-5">
-//             ${generateInfoCard(teamArray)}
-//         </main>
-//         <footer class="container text-center py-3">
-//             <h3 class="text-dark">&copy;2021 by Mark</h3>
-//         </footer>
-//     </body>
-//     </html>
-//     `;
-//     };
+    <body>
+        <header>
+        <div class="container flex-row justify-space-between align-center py-3">
+            <h1 class="page-title text-white bg-danger py-2 px-3 text-center">My Team</h1>
+        </div>
+        </header>
+        <main class="container my-5">
+            ${cardValues}
+        </main>
+        <footer class="container text-center py-3">
+            <h3 class="text-dark">&copy;2021 by Mark</h3>
+        </footer>
+    </body>
+    </html>
+    `;
+    };
   
+    //            
