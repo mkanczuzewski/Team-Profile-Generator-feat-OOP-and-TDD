@@ -1,7 +1,7 @@
 // create the manager card
 const generateManagerCard = function(manager) {
     return `
-        <div class="column">
+        <div class="column my-3">
             <div class="card" style="width: 18rem;">
                 <div class="card-body bg-dark text-white">
                     <h3 class="card-title text-white">${manager.name}</h3>
@@ -11,7 +11,7 @@ const generateManagerCard = function(manager) {
                             Employee ID: ${manager.id}
                         </div>
                         <div class="card-text">
-                            Employee Email Address: ${manager.emailAddress}
+                            Employee Email Address: <a href="mailto:${manager.emailAddress}">${manager.emailAddress}</a>
                         </div>
                         <div class="card-text">
                             Manager Office No: ${manager.officeNo}
@@ -26,20 +26,20 @@ const generateManagerCard = function(manager) {
 // create the engineer card
 const generateEngineerCard = function(engineer) {
     return `
-        <div class="column">
+        <div class="column my-3">
             <div class="card" style="width: 18rem;">
                 <div class="card-body bg-dark text-white">
                     <h3 class="card-title text-white">${engineer.name}</h3>
-                    <h3 class="card-text text-white">Manager</h3>
+                    <h3 class="card-text text-white">Engineer</h3>
                     <div class="bg-light text-dark">
                         <div class="card-text">
                             Employee ID: ${engineer.id}
                         </div>
                         <div class="card-text">
-                            Employee Email Address: ${engineer.emailAddress}
+                            Employee Email Address: <a href="mailto:${engineer.emailAddress}">${engineer.emailAddress}</a>
                         </div>
                         <div class="card-text">
-                            GitHub Username: ${engineer.gitHubUser}
+                            GitHub Username: <a href="https://github.com/${engineer.gitHubUser}">${engineer.gitHubUser}</a>
                         </div>
                     </div>
                 </div>
@@ -51,17 +51,17 @@ const generateEngineerCard = function(engineer) {
 // create the Intern card
 const generateInternCard = function(intern) {
     return `
-        <div class="column">
+        <div class="column my-3">
             <div class="card" style="width: 18rem;">
                 <div class="card-body bg-dark text-white">
                     <h3 class="card-title text-white">${intern.name}</h3>
-                    <h3 class="card-text text-white">Manager</h3>
+                    <h3 class="card-text text-white">Intern</h3>
                     <div class="bg-light text-dark">
                         <div class="card-text bg-light text-black">
                             Employee ID: ${intern.id}
                         </div>
                         <div class="card-text bg-light text-black">
-                            Employee Email Address: ${intern.emailAddress}
+                            Employee Email Address: <a href="mailto:${intern.emailAddress}">${intern.emailAddress}</a>
                         </div>
                         <div class="card-text bg-light text-black">
                             Intern School: ${intern.school}
@@ -118,11 +118,9 @@ module.exports = (employeeData) => {
             </div>
         </main>
         <footer class="container text-center py-3">
-            <h3 class="text-dark">&copy;2021 by Mark</h3>
+            <h3 class="text-dark">&copy;2021 by Company Inc.</h3>
         </footer>
     </body>
     </html>
     `;
-    };
-  
-    //            
+    };         
